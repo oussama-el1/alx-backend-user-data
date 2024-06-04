@@ -17,15 +17,15 @@ class Auth:
         Define which routes don't need authentication
         """
 
-        if path is None or excluded_paths:
+        if path is None or excluded_paths is None or excluded_paths == []:
             return True
 
         tmp = path + '/' if path[-1] != '/' else path
 
         if tmp in excluded_paths:
-            return True
-        else:
             return False
+        else:
+            return True
 
     def authorization_header(self, request=None) -> str:
         """
