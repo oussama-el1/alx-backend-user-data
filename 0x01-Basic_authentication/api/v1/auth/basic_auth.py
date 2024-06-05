@@ -56,8 +56,8 @@ class BasicAuth(Auth):
         """
 
         if decode_b_64 is None or not isinstance(decode_b_64, str):
-            return None
+            return None, None
         if ':' not in decode_b_64:
-            return None
+            return None, None
         user_credentials = decode_b_64.split(':')
         return user_credentials[0], user_credentials[1]
