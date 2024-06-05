@@ -64,7 +64,8 @@ class BasicAuth(Auth):
         user_credentials = decode_b_64.split(':')
         return user_credentials[0], user_credentials[1]
 
-    def user_object_from_credentials(self, email: str, pwd: str):
+    def user_object_from_credentials(
+            self, user_email: str, user_pwd: str) -> TypeVar('User'):
         """_summary_
 
         Args:
