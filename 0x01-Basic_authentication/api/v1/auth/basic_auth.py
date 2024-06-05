@@ -46,4 +46,3 @@ class BasicAuth(Auth):
         except Exception:
             return None
         return b64_decode
-
