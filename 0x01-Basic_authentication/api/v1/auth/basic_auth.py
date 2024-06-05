@@ -3,11 +3,10 @@
 Basic auth module
 """
 
-Auth = __import__('auth').Auth
+from api.v1.auth.auth import Auth
 
 
 class BasicAuth(Auth):
     """
     BasicAuth class
     """
-    pass
