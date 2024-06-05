@@ -62,7 +62,13 @@ class BasicAuth(Auth):
         if ':' not in decode_b_64:
             return None, None
         user_credentials = decode_b_64.split(':')
-        return user_credentials[0], user_credentials[1]
+        if len(user_credentials) != 2:
+            pwd = ''
+            for partpwd in user_credentials[1:]:
+                pwd = pwd + partpwd
+        else:
+            pwd = user_credentials[1]
+        return user_credentials[0], pwd
 
     def user_object_from_credentials(
             self, user_email: str, user_pwd: str) -> TypeVar('User'):
