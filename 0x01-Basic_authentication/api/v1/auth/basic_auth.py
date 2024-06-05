@@ -63,9 +63,7 @@ class BasicAuth(Auth):
             return None, None
         user_credentials = decode_b_64.split(':')
         if len(user_credentials) != 2:
-            pwd = ''
-            for partpwd in user_credentials[1:]:
-                pwd = pwd + partpwd
+            pwd = ':'.join(user_credentials[1:])
         else:
             pwd = user_credentials[1]
         return user_credentials[0], pwd
