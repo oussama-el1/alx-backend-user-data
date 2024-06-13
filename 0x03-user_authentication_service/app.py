@@ -62,7 +62,7 @@ def login() -> Tuple[Response, int]:
 
 
 @app.route('/sessions', methods=['DELETE'])
-def logout() -> Response:
+def logout() -> str:
     """Logout
     """
 
