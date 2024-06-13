@@ -18,11 +18,11 @@ def greating():
 
 
 @app.route('/users', methods=['POST'])
-def users() -> str:
+def users():
     """ users register """
     try:
-        email = request.form.get("email")
-        password = request.form.get("password")
+        email = request.form["email"]
+        password = request.form["password"]
     except KeyError:
         abort(400)
 
@@ -32,6 +32,7 @@ def users() -> str:
         return jsonify({"message": "email already registered"}), 400
 
     return jsonify({"email": email, "message": "user created"})
+
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000)
