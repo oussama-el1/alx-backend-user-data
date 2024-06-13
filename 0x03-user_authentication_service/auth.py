@@ -5,7 +5,7 @@ Hash Method
 import bcrypt
 from db import DB
 from user import User
-from typing import Union
+import uuid
 
 from sqlalchemy.orm.exc import NoResultFound
 
@@ -20,6 +20,12 @@ def _hash_password(password: str) -> str:
 
     hashed = bcrypt.hashpw(password.encode(), bcrypt.gensalt())
     return hashed
+
+
+def _generate_uuid():
+    """ generate_uuid """
+
+    return str(uuid.uuid4())
 
 
 class Auth:
