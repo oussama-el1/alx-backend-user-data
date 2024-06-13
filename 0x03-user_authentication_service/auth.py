@@ -10,12 +10,8 @@ import uuid
 from sqlalchemy.orm.exc import NoResultFound
 
 
-def _hash_password(password: str) -> str:
-    """
-    :param pwd:
-    :type pwd:
-    :return:
-    :rtype:
+def _hash_password(password: str) -> bytes:
+    """_hash_password
     """
 
     hashed = bcrypt.hashpw(password.encode(), bcrypt.gensalt())
