@@ -56,23 +56,23 @@ class DB:
 
         return user
 
-    def find_user_by(self, **kwargs: Dict[str, str]) -> Type[User]:
-        """Find a user by specified attributes.
-
-        Raises:
-            error: NoResultFound: When no results are found.
-            error: InvalidRequestError: When invalid query arguments are passed
-
-        Returns:
-            User: First row found in the `users` table.
+    def find_user_by(self, **kwargs) -> User:
+        """ Finds user by key word args
+        Return: First row found in the users table as filtered by kwargs
         """
-        session = self._session
-        try:
-            user = session.query(User).filter_by(**kwargs).one()
-        except NoResultFound:
-            raise NoResultFound()
-        except InvalidRequestError:
-            raise InvalidRequestError()
+        if not kwargs:
+            raise InvalidRequestError
+
+        column_names = User.__table__.columns.keys()
+        for key in kwargs.keys():
+            if key not in column_names:
+                raise InvalidRequestError
+
+        user = self._session.query(User).filter_by(**kwargs).first()
+
+        if user is None:
+            raise NoResultFound
+
         return user
 
     def update_user(self, user_id: int, **kwargs) -> None:
