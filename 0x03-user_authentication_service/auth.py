@@ -3,10 +3,9 @@
 Hash Method
 """
 import bcrypt
-from bcrypt
 
 
-def _hash_password(pwd: str) -> bytes:
+def _hash_password(pwd: str) -> str:
     """
     :param pwd:
     :type pwd:
@@ -14,6 +13,5 @@ def _hash_password(pwd: str) -> bytes:
     :rtype:
     """
 
-    pwd_bytes = pwd.encode('utf-8')
-
-    return bcrypt.hashpw(pwd_bytes, bcrypt.gensalt())
+    hashed = bcrypt.hashpw(pwd.encode(), bcrypt.gensalt())
+    return hashed
