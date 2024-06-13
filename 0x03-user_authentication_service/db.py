@@ -75,4 +75,3 @@ class DB:
             raise InvalidRequestError()
 
         return user
-
