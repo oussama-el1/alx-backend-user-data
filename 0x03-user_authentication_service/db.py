@@ -75,27 +75,18 @@ class DB:
             raise InvalidRequestError()
         return user
 
-    def update_user(self, user_id: int, **kwargs: Dict[str, str]) -> None:
+    def update_user(self, user_id: int, **kwargs) -> None:
+        """ Update users attributes
+        Returns: None
         """
-        :param user_id:
-        :type user_id:
-        :return:
-        :rtype:
-        """
+        user = self.find_user_by(id=user_id)
 
-        try:
-            user = self.find_user_by(id=user_id)
-        except NoResultFound:
-            raise ValueError("No user Found")
+        column_names = User.__table__.columns.keys()
+        for key in kwargs.keys():
+            if key not in column_names:
+                raise ValueError
 
         for key, value in kwargs.items():
-            if not hasattr(user, key):
-                raise ValueError(f"The User has not attribute: {key}")
-
             setattr(user, key, value)
 
-        session = self._session
-        try:
-            session.commit()
-        except InvalidRequestError:
-            raise ValueError("Invalid request")
+        self._session.commit()
