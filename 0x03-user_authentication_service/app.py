@@ -5,6 +5,8 @@ Flask app
 from typing import Tuple
 
 from flask import Flask, jsonify, request, abort, Response, redirect, url_for
+from werkzeug import Response
+
 from auth import Auth
 
 
@@ -60,7 +62,7 @@ def login() -> Tuple[Response, int]:
 
 
 @app.route('/sessions', methods=['DELETE'])
-def logout():
+def logout() -> Response:
     """Logout
     """
 
