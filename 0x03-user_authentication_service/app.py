@@ -2,7 +2,9 @@
 """
 Flask app
 """
-from flask import Flask, jsonify, request, abort
+from typing import Tuple
+
+from flask import Flask, jsonify, request, abort, Response
 from auth import Auth
 
 
@@ -35,7 +37,7 @@ def users():
 
 
 @app.route('/sessions', methods=['POST'])
-def login() -> None:
+def login() -> Tuple[Response, int]:
     """login
     """
 
@@ -48,7 +50,7 @@ def login() -> None:
     try:
         if AUTH.valid_login(email, password):
             session_id = AUTH.create_session(email)
-            return jsonify({"email": email, "message": "logged in"})
+            return jsonify({"email": email, "message": "logged in"}), 200
         else:
             abort(401)
     except Exception:
