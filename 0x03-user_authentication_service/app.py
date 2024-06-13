@@ -35,7 +35,7 @@ def users():
 
 
 @app.route('/sessions', methods=['POST'])
-def login():
+def login() -> None:
     """login
     """
 
@@ -47,7 +47,8 @@ def login():
 
     try:
         if AUTH.valid_login(email, password):
-            AUTH.create_session(email)
+            session_id = AUTH.create_session(email)
+            return jsonify({"email": email, "message": "logged in"})
         else:
             abort(401)
     except Exception:
