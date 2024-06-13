@@ -4,7 +4,7 @@ Flask app
 """
 from typing import Tuple
 
-from flask import Flask, jsonify, request, abort, Response
+from flask import Flask, jsonify, request, abort, Response, redirect, url_for
 from auth import Auth
 
 
@@ -57,6 +57,23 @@ def login() -> Tuple[Response, int]:
             abort(401)
     except Exception:
         abort(401)
+
+
+@app.route('/sessions', methods=['DELETE'])
+def logout():
+    """Logout
+    """
+
+    session_id = request.cookies.get('session_id', None)
+    if session_id is None:
+        abort(400)
+
+    try:
+        user = AUTH.get_user_from_session_id(session_id)
+        AUTH.destroy_session(user.id)
+        return redirect(url_for('greating'))
+    except Exception:
+        abort(403)
 
 
 if __name__ == "__main__":
