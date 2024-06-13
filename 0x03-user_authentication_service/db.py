@@ -2,17 +2,17 @@
 
 """DB module
 """
+
+from user import Base, User
+from user import User
+from typing import Dict, Type
+
 from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.orm.session import Session
 from sqlalchemy.orm.exc import NoResultFound
 from sqlalchemy.exc import InvalidRequestError
-
-
-from user import Base
-from user import User
-from typing import Dict
 
 
 class DB:
@@ -39,9 +39,7 @@ class DB:
     def add_user(self, email: str, hashed_password: str) -> User:
         """
         :param email:
-        :type String:
         :param hashed_password:
-        :type String:
         :return: user obj
         :rtype: User
         """
@@ -58,7 +56,7 @@ class DB:
 
         return user
 
-    def find_user_by(self, **kwargs: Dict[str, str]) -> User:
+    def find_user_by(self, **kwargs: Dict[str, str]) -> Type[User]:
         """Find a user by specified attributes.
 
         Raises:
