@@ -5,7 +5,7 @@ Hash Method
 import bcrypt
 
 
-def _hash_password(pwd: str) -> str:
+def _hash_password(password: str) -> str:
     """
     :param pwd:
     :type pwd:
@@ -13,5 +13,5 @@ def _hash_password(pwd: str) -> str:
     :rtype:
     """
 
-    hashed = bcrypt.hashpw(pwd.encode(), bcrypt.gensalt())
+    hashed = bcrypt.hashpw(password.encode(), bcrypt.gensalt())
     return hashed
