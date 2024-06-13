@@ -75,7 +75,7 @@ class DB:
             raise InvalidRequestError()
         return user
 
-    def update_user(self, user_id, **kwargs: Dict[str, str]) -> None:
+    def update_user(self, user_id: int, **kwargs: Dict[str, str]) -> None:
         """
         :param user_id:
         :type user_id:
