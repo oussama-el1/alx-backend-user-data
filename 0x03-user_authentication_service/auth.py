@@ -5,6 +5,7 @@ Hash Method
 import bcrypt
 from db import DB
 from user import User
+from typing import Union
 
 from sqlalchemy.orm.exc import NoResultFound
 
@@ -37,3 +38,12 @@ class Auth:
                                      hashed_password=_hash_password(password))
             return user
         raise ValueError(f"User {email} already exists")
+
+    def valid_login(self, email: str, password: str) -> bool:
+        """ Valid User Credentials """
+
+        try:
+            user = self._db.find_user_by(email=email)
+            return bcrypt.checkpw(password.encode(), user.hashed_password)
+        except Exception:
+            return False
