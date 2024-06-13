@@ -22,7 +22,7 @@ def _hash_password(password: str) -> str:
     return hashed
 
 
-def _generate_uuid():
+def _generate_uuid() -> str:
     """ generate_uuid """
 
     return str(uuid.uuid4())
