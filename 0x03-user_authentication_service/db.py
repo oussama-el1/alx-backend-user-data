@@ -6,9 +6,13 @@ from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.orm.session import Session
+from sqlalchemy.orm.exc import NoResultFound
+from sqlalchemy.exc import InvalidRequestError
+
 
 from user import Base
 from user import User
+from typing import Dict
 
 
 class DB:
@@ -53,3 +57,22 @@ class DB:
             raise
 
         return user
+
+    def find_user_by(self, **kwargs: Dict[str, str]) -> User:
+        """
+        Find a user by any field.
+
+        :param kwargs: Field and value to filter by
+        :return: The User object or None if not found
+        :rtype: User or None
+        """
+
+        try:
+            user = self._session.query(User).filter_by(**kwargs).one()
+        except NoResultFound:
+            raise NoResultFound()
+        except InvalidRequestError:
+            raise InvalidRequestError()
+
+        return user
+
