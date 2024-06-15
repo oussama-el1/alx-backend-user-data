@@ -45,10 +45,11 @@ def login_session():
     return response
 
 
-@app_views.route('/api/v1/auth_session/logout',
+@app_views.route('/auth_session/logout',
                  methods=['DELETE'], strict_slashes=False)
-def log_out_session():
-    """ Logout """
+def logout():
+    """ DELETE /auth_session/logout
+    """
     from api.v1.app import auth
 
     deleted = auth.destroy_session(request)
