@@ -8,9 +8,7 @@ from flask import request, jsonify
 import os
 
 
-app_views.route('/auth_session/login', methods=['POST'], strict_slashes=False)
-
-
+@app_views.route('/auth_session/login', methods=['POST'], strict_slashes=False)
 def login_session():
     """ login_session """
     from models.user import User
