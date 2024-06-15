@@ -30,15 +30,9 @@ class SessionAuth(Auth):
         return session_id
 
     def user_id_for_session_id(self, session_id: str = None) -> str:
-        """
-        :param session_id:
-        :type session_id:
-        :return:
-        :rtype:
-        """
+        """Returns a User ID based on a Session ID"""
 
         if session_id is None or not isinstance(session_id, str):
             return None
 
-        user_id = self.user_id_by_session_id.get(session_id)
-        return user_id
+        return self.user_id_by_session_id.get(session_id)
