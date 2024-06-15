@@ -5,7 +5,6 @@ Class Session Auth
 
 from .auth import Auth
 import uuid
-import os
 
 
 class SessionAuth(Auth):
@@ -37,16 +36,3 @@ class SessionAuth(Auth):
             return None
 
         return self.user_id_by_session_id.get(session_id)
-
-    def session_cookie(self, request=None):
-        """ Returns the session_cookie for a Request """
-
-        if request is None:
-            return None
-
-        coockie_name = os.environ.get("SESSION_NAME")
-
-        if coockie_name:
-            return request.coockies.get(coockie_name)
-
-        return None

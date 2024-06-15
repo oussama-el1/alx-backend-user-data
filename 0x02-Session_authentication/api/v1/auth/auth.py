@@ -4,6 +4,7 @@ Authorization module
 """
 from flask import request
 from typing import List, TypeVar
+import os
 
 
 class Auth:
@@ -47,5 +48,18 @@ class Auth:
         """
         current_user function
         """
+
+        return None
+
+    def session_cookie(self, request=None):
+        """ Returns the session_cookie for a Request """
+
+        if request is None:
+            return None
+
+        coockie_name = os.environ.get("SESSION_NAME")
+
+        if coockie_name:
+            return request.cookies.get(coockie_name)
 
         return None
