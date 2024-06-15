@@ -77,6 +77,6 @@ def before_request() -> str:
 
 
 if __name__ == "__main__":
-    host = getenv("API_HOST", "0.0.0.0")
+    host = getenv("API_HOST", "172.0.0.1")
     port = getenv("API_PORT", "5000")
     app.run(host=host, port=port)
