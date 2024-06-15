@@ -7,6 +7,7 @@ from .auth import Auth
 import uuid
 from models.user import User
 
+
 class SessionAuth(Auth):
     """
     SessionAuth Class
@@ -40,7 +41,8 @@ class SessionAuth(Auth):
     def current_user(self, request=None):
         """ current_user """
 
-        user_id = self.user_id_for_session_id(request)
+        session_id = self.session_cookie(request)
+        user_id = self.user_id_for_session_id(session_id)
         user = User.get(user_id)
 
         return user
