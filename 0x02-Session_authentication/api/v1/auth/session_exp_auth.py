@@ -1,6 +1,9 @@
 #!/usr/bin/env python3
 """
 Expiration for sessions
+Expiration for sessions
+Expiration for sessions
+Expiration for sessions
 """
 
 from session_auth import SessionAuth
@@ -11,10 +14,14 @@ from datetime import datetime, timedelta
 class SessionExpAuth(SessionAuth):
     """
     class Expiration for a session
+    class Expiration for a session
+    class Expiration for a session
     """
 
     def __init__(self):
         """
+        Constructor for the Child class
+        Constructor for the Child class
         Constructor for the Child class
         """
         try:
@@ -25,6 +32,8 @@ class SessionExpAuth(SessionAuth):
 
     def create_session(self, user_id=None):
         """
+        Overload create_session methods
+        Overload create_session methods
         Overload create_session methods
         """
 
@@ -39,6 +48,8 @@ class SessionExpAuth(SessionAuth):
 
     def user_id_for_session_id(self, session_id=None):
         """
+        overload user_id_for_session_id
+        overload user_id_for_session_id
         overload user_id_for_session_id
         """
 
