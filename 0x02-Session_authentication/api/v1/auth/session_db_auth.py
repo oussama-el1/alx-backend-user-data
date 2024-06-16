@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
-"""
-SessionDBAuth class
+""" SessionDBAuth class
 """
 
 from api.v1.auth.session_exp_auth import SessionExpAuth

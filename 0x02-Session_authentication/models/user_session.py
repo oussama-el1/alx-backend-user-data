@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
-"""
-UserSession Model
+""" UserSession Model
 """
 
 from base import Base
