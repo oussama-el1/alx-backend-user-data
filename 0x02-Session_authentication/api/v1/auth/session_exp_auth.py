@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Expiration
+Expiration for sessions
 """
 
 from session_auth import SessionAuth
@@ -24,7 +24,9 @@ class SessionExpAuth(SessionAuth):
         self.session_duration = session_duration
 
     def create_session(self, user_id=None):
-        """ Overload create_session methods """
+        """
+        Overload create_session methods
+        """
 
         session_id = super().create_session(user_id)
         if session_id is None:
@@ -36,7 +38,9 @@ class SessionExpAuth(SessionAuth):
         return session_id
 
     def user_id_for_session_id(self, session_id=None):
-        """ overload user_id_for_session_id """
+        """
+        overload user_id_for_session_id
+        """
 
         if session_id is None:
             return None
