@@ -1,9 +1,5 @@
 #!/usr/bin/env python3
-"""
-Expiration for sessions
-Expiration for sessions
-Expiration for sessions
-Expiration for sessions
+""" Module of Expiration of Session Authentication
 """
 
 from session_auth import SessionAuth
@@ -12,18 +8,10 @@ from datetime import datetime, timedelta
 
 
 class SessionExpAuth(SessionAuth):
-    """
-    class Expiration for a session
-    class Expiration for a session
-    class Expiration for a session
-    """
+    """Session Expiration Class"""
 
     def __init__(self):
-        """
-        Constructor for the Child class
-        Constructor for the Child class
-        Constructor for the Child class
-        """
+        """Constructor Method"""
         try:
             session_duration = int(os.environ.get("SESSION_DURATION", 0))
         except (TypeError, ValueError):
@@ -31,11 +19,7 @@ class SessionExpAuth(SessionAuth):
         self.session_duration = session_duration
 
     def create_session(self, user_id=None):
-        """
-        Overload create_session methods
-        Overload create_session methods
-        Overload create_session methods
-        """
+        """Creation session with expiration"""
 
         session_id = super().create_session(user_id)
         if session_id is None:
@@ -47,11 +31,7 @@ class SessionExpAuth(SessionAuth):
         return session_id
 
     def user_id_for_session_id(self, session_id=None):
-        """
-        overload user_id_for_session_id
-        overload user_id_for_session_id
-        overload user_id_for_session_id
-        """
+        """gets user_id from session_id"""
 
         if session_id is None:
             return None
