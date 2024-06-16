@@ -8,13 +8,10 @@ from datetime import timedelta, datetime
 
 
 class SessionDBAuth(SessionExpAuth):
-    """
-    SessionDBAuth class
-    """
+    """SessionDBAuth database class"""
 
     def create_session(self, user_id=None):
         """
-
         :param user_id:
         :type user_id:
         :return:
