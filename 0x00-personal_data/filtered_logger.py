@@ -3,12 +3,13 @@
 0. Regex-ing : filter_datum
 """
 import re
-import logging
+from typing import List
 
 
-def filter_datum(fields, redaction, message, separator) -> object:
-    """
-    filter_datum
-    """
-    pattern = f"({'|'.join(fields)})=[^{separator}]*"
-    return re.sub(pattern, lambda m: f"{m.group(1)}={redaction}", message)
+def filter_datum(fields: List[str], redaction: str,
+                 message: str, separator: str) -> str:
+    """ Returns a log message obfuscated """
+    for f in fields:
+        message = re.sub(f'{f}=.*?{separator}',
+                         f'{f}={redaction}{separator}', message)
+    return message
